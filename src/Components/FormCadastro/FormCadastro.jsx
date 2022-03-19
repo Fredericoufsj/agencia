@@ -1,7 +1,23 @@
 
+import { useEffect, useState } from 'react'
+import api from '../../api'
+
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default () => {
+const Formulario = () => {
+
+    const[clientes, setClientes] = useState([])
+
+useEffect(()=>{
+   api.get('/clientes').then(res=>{
+
+    setClientes(res.data);
+    console.log(res)
+
+    }).catch(error=>console.log(error))
+}, [])
+
+
   return (
     <>
        <main class="vh-100 ">
@@ -37,3 +53,4 @@ export default () => {
     </>
   );
 }
+export default Formulario;
